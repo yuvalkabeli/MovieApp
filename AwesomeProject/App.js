@@ -22,6 +22,7 @@ import {
   Colors,
   Header,
 } from 'react-native/Libraries/NewAppScreen';
+import Movies from './components/Movies';
 import Section from './components/Section'
 // import getMovies from './helpers/helpers';
 //const App: () => Node = () => {
@@ -51,43 +52,18 @@ const App = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Movie Title1">
-            information about the movie
-          </Section>
-          <Section title="Movie Title2">
-            information about the mo
-          </Section>
-          <Section title="Movie Title3">
-            {movies[0].rating}
-          </Section>
-          <Section title="Movie Title4">
-            Read the docs to discover what to do next
-          </Section>
+          <Movies moviesArray={movies} />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </SafeAreaView >
   );
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
   highlight: {
     fontWeight: '700',
   },

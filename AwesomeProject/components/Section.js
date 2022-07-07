@@ -2,6 +2,7 @@ import React from 'react';
 // import type {Node} from 'react';
 import {
 
+  Image,
   StyleSheet,
   Text,
   useColorScheme,
@@ -13,8 +14,9 @@ import {
 
 } from 'react-native/Libraries/NewAppScreen';
 
-export default function Section({ children, title }) {
+export default function Section({ movie }) {
   const isDarkMode = useColorScheme() === 'dark';
+  const { title, image, rating, releaseYear, genre } = movie
   const styles = StyleSheet.create({
     sectionContainer: {
       marginTop: 32,
@@ -29,8 +31,10 @@ export default function Section({ children, title }) {
       fontSize: 18,
       fontWeight: '400',
     },
-    highlight: {
-      fontWeight: '700',
+    tinyLogo: {
+      width: 200,
+      height: 300,
+      resizeMode: 'stretch'
     },
   });
   return (
@@ -44,6 +48,13 @@ export default function Section({ children, title }) {
         ]}>
         {title}
       </Text>
+      <Image
+        style={styles.tinyLogo}
+        source={{
+          uri: image,
+        }}
+      />
+
       <Text
         style={[
           styles.sectionDescription,
@@ -51,7 +62,25 @@ export default function Section({ children, title }) {
             color: isDarkMode ? Colors.light : Colors.dark,
           },
         ]}>
-        {children}
+        release year:{releaseYear}
+      </Text>
+      <Text
+        style={[
+          styles.sectionDescription,
+          {
+            color: isDarkMode ? Colors.light : Colors.dark,
+          },
+        ]}>
+        Rating:{rating}
+      </Text>
+      <Text
+        style={[
+          styles.sectionDescription,
+          {
+            color: isDarkMode ? Colors.light : Colors.dark,
+          },
+        ]}>
+        genres:{genre.toString()}
       </Text>
     </View>
   );
