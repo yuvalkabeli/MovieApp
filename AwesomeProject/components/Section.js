@@ -1,24 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 // import type {Node} from 'react';
 import {
 
   Button,
   Image,
-  StyleSheet,
   Text,
-  useColorScheme,
   View,
 } from 'react-native';
-
-import {
-  Colors,
-
-} from 'react-native/Libraries/NewAppScreen';
+import { MovieInfoContext, movieInfoContext } from '../context/MovieInfoContext';
 import { styles } from '../styles/styles';
 export default function Section({ movie, navigation }) {
-  const isDarkMode = useColorScheme() === 'dark';
   const { title, image, rating, releaseYear, genre } = movie
+  const movieTitleState = useContext(MovieInfoContext)
   const navigateToMovie = () => {
+    movieTitleState.setMovieTitle(title)
     navigation.navigate('MovieInfo', { movie })
   }
   return (
