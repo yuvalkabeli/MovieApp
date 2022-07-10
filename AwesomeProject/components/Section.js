@@ -2,6 +2,7 @@ import React from 'react';
 // import type {Node} from 'react';
 import {
 
+  Button,
   Image,
   StyleSheet,
   Text,
@@ -13,39 +14,17 @@ import {
   Colors,
 
 } from 'react-native/Libraries/NewAppScreen';
-
-export default function Section({ movie }) {
+import { styles } from '../styles/styles';
+export default function Section({ movie, navigation }) {
   const isDarkMode = useColorScheme() === 'dark';
   const { title, image, rating, releaseYear, genre } = movie
-  const styles = StyleSheet.create({
-    sectionContainer: {
-      marginTop: 32,
-      paddingHorizontal: 24,
-    },
-    sectionTitle: {
-      fontSize: 24,
-      fontWeight: '600',
-    },
-    sectionDescription: {
-      marginTop: 8,
-      fontSize: 18,
-      fontWeight: '400',
-    },
-    tinyLogo: {
-      width: 200,
-      height: 300,
-      resizeMode: 'stretch'
-    },
-  });
+  const navigateToMovie = () => {
+    navigation.navigate('MovieInfo', { movie })
+  }
   return (
     <View style={styles.sectionContainer}>
       <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
+        style={styles.sectionTitle}>
         {title}
       </Text>
       <Image
@@ -54,34 +33,20 @@ export default function Section({ movie }) {
           uri: image,
         }}
       />
-
       <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
+        style={styles.sectionDescription}>
         release year:{releaseYear}
       </Text>
       <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
+        style={styles.sectionDescription}>
         Rating:{rating}
       </Text>
       <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
+        style={styles.sectionDescription}>
         genres:{genre.toString()}
       </Text>
+      <Button title='for more details' onPress={() => navigateToMovie()} />
+
     </View>
   );
 };

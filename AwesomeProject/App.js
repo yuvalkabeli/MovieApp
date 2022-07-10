@@ -1,72 +1,51 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import LoadingScreen from './screens/LoadingScreen';
+import MovieInfoScreen from './screens/MovieInfoScreen';
+import MoviesScreen from './screens/MoviesScreen';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-import React, { useEffect, useState } from 'react';
-// import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  Header,
-} from 'react-native/Libraries/NewAppScreen';
-import Movies from './components/Movies';
-import Section from './components/Section'
-// import getMovies from './helpers/helpers';
+// import MovieInfoContext from './context/MovieInfoContext'
 //const App: () => Node = () => {
+const Stack = createNativeStackNavigator();
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-  const [movies, setMovies] = useState([])
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  useEffect(() => {
-    async function fetchMyAPI() {
-      let response = await fetch('http://10.0.2.2:3000/getMovies')
-      response = await response.json()
-      setMovies([...response])
-    }
-
-    fetchMyAPI()
-  }, [])
-
-
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Movies moviesArray={movies} />
-        </View>
-      </ScrollView>
-    </SafeAreaView >
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="LoadingScreen"
+          component={LoadingScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Movies"
+          component={MoviesScreen}
+          options={{
+            title: 'Movies',
+            headerBackVisible: false,
+            headerBackground: Colors.DarkBlue,
+            headerStyle: {
+              backgroundColor: 'purple'
+            },
+            headerTitleAlign: 'center'
+          }}
+        />
+        < Stack.Screen
+          name="MovieInfo"
+          component={MovieInfoScreen}
+          options={{ title: 'change to context' }}
+        />
+        {/* </ImageBackground> */}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
+
+
 };
 
-const styles = StyleSheet.create({
-  highlight: {
-    fontWeight: '700',
-  },
-});
+
+
 
 export default App;
