@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Button, ImageBackground, Image } from 'react-native'
+import { View, Image } from 'react-native'
 import { styles } from '../styles/styles'
 export default function LoadingScreen({ navigation }) {
     const [movies, setMovies] = useState([])
+    const imageSource = { uri: 'https://cdn-icons-png.flaticon.com/512/831/831277.png' }
+    const getMovies = async () => {
+        let response = await fetch('https://kabeli-movies-api.herokuapp.com/getMovies')
+        response = await response.json()
+        setMovies([...response])
+    }
     useEffect(() => {
-        async function getMovies() {
-            let response = await fetch('http://10.0.2.2:3000/getMovies')
-            response = await response.json()
-            setMovies([...response])
-        }
-
         getMovies()
     }, [])
     useEffect(() => {
@@ -20,10 +20,8 @@ export default function LoadingScreen({ navigation }) {
         }
     }, [movies])
     return (
-
         <View style={styles.loadingSCreen}>
-            {/* <Text style={styles.loadingScreenText} >Loading data</Text> */}
-            <Image style={styles.loadingScreenIcon} source={{ uri: 'https://cdn-icons-png.flaticon.com/512/831/831277.png' }} />
+            <Image style={styles.loadingScreenIcon} source={imageSource} />
         </View>
     );
 }

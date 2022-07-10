@@ -1,21 +1,15 @@
 import React, { useContext } from 'react';
-// import type {Node} from 'react';
-import {
-
-  Button,
-  Image,
-  Text,
-  View,
-} from 'react-native';
-import { MovieInfoContext, movieInfoContext } from '../context/MovieInfoContext';
+import { Button, Image, Text, View, } from 'react-native';
+import { MovieInfoContext } from '../context/MovieInfoContext';
 import { styles } from '../styles/styles';
 export default function Section({ movie, navigation }) {
   const { title, image, rating, releaseYear, genre } = movie
-  const movieTitleState = useContext(MovieInfoContext)
+  const { setMovieTitle } = useContext(MovieInfoContext)
   const navigateToMovie = () => {
-    movieTitleState.setMovieTitle(title)
+    setMovieTitle(title)
     navigation.navigate('MovieInfo', { movie })
   }
+  console.log(genre.toString())
   return (
     <View style={styles.sectionContainer}>
       <Text
@@ -23,14 +17,14 @@ export default function Section({ movie, navigation }) {
         {title}
       </Text>
       <Image
-        style={styles.tinyLogo}
+        style={styles.moviePoster}
         source={{
           uri: image,
         }}
       />
       <Text
         style={styles.sectionDescription}>
-        release year:{releaseYear}
+        Release year:{releaseYear}
       </Text>
       <Text
         style={styles.sectionDescription}>
@@ -38,7 +32,7 @@ export default function Section({ movie, navigation }) {
       </Text>
       <Text
         style={styles.sectionDescription}>
-        genres:{genre.toString()}
+        Genres: {genre.toString().replace(',', ' , ')}
       </Text>
       <Button title='for more details' onPress={() => navigateToMovie()} />
 

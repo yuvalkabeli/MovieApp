@@ -11,7 +11,6 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   const [movieTitle, setMovieTitle] = useState('')
   const movieTitleState = { movieTitle, setMovieTitle }
-  console.log(movieTitle)
   return (
     <MovieInfoContext.Provider value={movieTitleState}>
       <NavigationContainer>
@@ -37,7 +36,13 @@ const App = () => {
           <Stack.Screen
             name="MovieInfo"
             component={MovieInfoScreen}
-            options={{ title: movieTitle }}
+
+            options={{
+              title: movieTitle,
+              headerStyle: {
+                backgroundColor: 'purple'
+              },
+            }}
           />
           {/* </ImageBackground> */}
         </Stack.Navigator>

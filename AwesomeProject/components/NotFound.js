@@ -5,7 +5,7 @@ import { styles } from '../styles/styles'
 export default function NotFound() {
     return (
         <View style={styles.notFound} >
-            <Text style={styles.sectionDescription}>
+            <Text style={styles.notFoundText}>
                 looks like we could'nt find your movie...
             </Text>
         </View>

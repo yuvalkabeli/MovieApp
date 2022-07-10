@@ -1,45 +1,37 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { ImageBackground, ScrollView, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { styles } from '../styles/styles'
 import { Searchbar } from 'react-native-paper'
-import { makeSortedMovieObjects, showNotFound } from './helpers/helpers'
+import { makeSortedMovieElements, showNotFound } from '../helpers/helpers'
 
 export default function MoviesScreen({ route, navigation }) {
     const { moviesArray } = route.params
     const backGroundImage = { uri: "https://thumbs.dreamstime.com/b/cinema-seamless-background-modern-linear-elements-seamless-background-linear-movie-characters-vector-pattern-139002029.jpg" }
-    const [moviesElements, setMoviesElements] = useState([...makeSortedMovieObjects(moviesArray, navigation)])
+    const [moviesElements, setMoviesElements] = useState([...makeSortedMovieElements(moviesArray, navigation)])
     const [searchQuery, setSearchQuery] = useState('');
     const [resultFound, setResultFound] = useState(true)
-    const scrollView = useRef()
+
     const onChangeSearch = (query) => {
         setSearchQuery(query)
         const searchedMovies = moviesArray.filter((movieObj) => movieObj.title.toLowerCase().includes(query.toLowerCase()))
-        console.log(searchedMovies.length !== 0);
         if (searchedMovies.length !== 0) {
-            setMoviesElements([...makeSortedMovieObjects(searchedMovies, navigation)]);
+            setMoviesElements([...makeSortedMovieElements(searchedMovies, navigation)]);
             setResultFound(true)
         }
         else {
             setMoviesElements([])
-            console.log('this works')
             setResultFound(false)
         }
     };
-
-    // const showNotFound = (notFound) => {
-    //     if (notFound) {
-    //         return <NotFound />
-    //     }
-    // }
 
     return (
         <View>
             <ImageBackground source={backGroundImage} resizeMode="cover" styles={styles.backGround}>
                 <SafeAreaView>
-                    <ScrollView ref={scrollView}>
+                    <ScrollView>
                         <Searchbar
-                            placeholder="Search"
+                            placeholder="Search your movie"
                             onChangeText={onChangeSearch}
                             value={searchQuery}
                         />

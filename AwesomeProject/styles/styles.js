@@ -1,16 +1,7 @@
-import { StyleSheet } from "react-native";
-import { Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from "react-native";
 const win = Dimensions.get('window');
 const ratio = win.width / 541;
 export const styles = StyleSheet.create({
-    highlight: {
-        fontWeight: '700',
-    },
-    navItem: {
-        flex: 1,
-        alignItems: "center",
-        padding: 10
-    },
     header: {
         fontSize: 20,
         height: win.height * 0.2
@@ -39,7 +30,7 @@ export const styles = StyleSheet.create({
         color: 'white'
 
     },
-    tinyLogo: {
+    moviePoster: {
         width: 200,
         height: 300,
         resizeMode: 'stretch'
@@ -67,9 +58,14 @@ export const styles = StyleSheet.create({
     notFound: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
         backgroundColor: '#500B61',
         height: win.height,
         color: 'white',
+    },
+    notFoundText: {
+        marginTop: 100,
+        fontSize: 22,
+        fontWeight: '500',
+        color: 'white'
     }
 })

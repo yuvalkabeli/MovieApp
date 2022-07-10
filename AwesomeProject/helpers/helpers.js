@@ -1,7 +1,7 @@
-import Section from "../../components/Section"
+import Section from "../components/Section"
 import React from "react"
-import NotFound from "../../components/NotFound"
-export const makeSortedMovieObjects = (moviesArray, navigation) => {
+import NotFound from "../components/NotFound"
+export const makeSortedMovieElements = (moviesArray, navigation) => {
     const newArray = moviesArray.sort((a, b) => {
         if (a.rating > b.rating)
             return -1
