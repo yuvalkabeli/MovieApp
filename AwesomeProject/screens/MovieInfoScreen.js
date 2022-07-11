@@ -28,7 +28,12 @@ export default function MovieInfoScreen({ route }) {
                 </Text>
                 <Text
                     style={styles.sectionDescription}>
-                    Genres:{genre.toString().replace(',', ' , ')}
+                    Genres: {genre.map((oneGenre, index) => {
+                        if (index < genre.length - 1) {
+                            oneGenre += ', ';
+                        }
+                        return oneGenre;
+                    })}
                 </Text>
             </View>
         </ImageBackground>

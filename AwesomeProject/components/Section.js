@@ -9,7 +9,6 @@ export default function Section({ movie, navigation }) {
     setMovieTitle(title)
     navigation.navigate('MovieInfo', { movie })
   }
-  console.log(genre.toString())
   return (
     <View style={styles.sectionContainer}>
       <Text
@@ -32,7 +31,12 @@ export default function Section({ movie, navigation }) {
       </Text>
       <Text
         style={styles.sectionDescription}>
-        Genres: {genre.toString().replace(',', ' , ')}
+        Genres: {genre.map((oneGenre, index) => {
+          if (index < genre.length - 1) {
+            oneGenre += ', ';
+          }
+          return oneGenre;
+        })}
       </Text>
       <Button title='for more details' onPress={() => navigateToMovie()} />
 
