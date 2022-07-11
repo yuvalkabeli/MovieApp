@@ -2,6 +2,12 @@
 
 <div id="top"></div>
 
+### Description
+A React-Native app that demonstrates use of many React/React-Native features, such as React hooks(State,Context,Navigation Etc.)
+The app gets the movie data from an API I created called MovieAPI:
+<a href="https://reactnative.dev/docs/environment-setup">Github Reposetory</a>
+Heroku deployment Address:https://kabeli-movies-api.herokuapp.com/getMovies
+
 ### Built With
 
 - #### IDE
