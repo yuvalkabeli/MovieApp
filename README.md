@@ -8,7 +8,7 @@ A React-Native app that demonstrates use of many React/React-Native features, su
 The app gets the movie data from an API I created called MovieAPI:
 <a href="https://reactnative.dev/docs/environment-setup">MovieAPI Reposetory</a>
 <br/>
-Heroku deployment API:https://kabeli-movies-api.herokuapp.com/getMovies
+Heroku deployment API:https://kabeli-movies-api.herokuapp.com/getMovies (no longer active)
 
 ### Built With
 
